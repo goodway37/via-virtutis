@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Via Virtutis | Catholic Self-Improvement</title>
+<meta name="description" content="A Catholic-inspired space for prayer, reflection, virtue, and practical daily growth.">
+<style>
+:root{
+  --cream:#f7f0df;
+  --paper:#fffaf0;
+  --ink:#2d211d;
+  --muted:#75665c;
+  --burgundy:#681f2b;
+  --burgundy2:#8b3040;
+  --gold:#b58a3b;
+  --gold2:#d8bb79;
+  --green:#405f4b;
+  --line:#e2d5bc;
+  --shadow:0 14px 40px rgba(55,36,24,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%,rgba(181,138,59,.10),transparent 25%),
+    radial-gradient(circle at 90% 20%,rgba(104,31,43,.08),transparent 28%),
+    var(--cream);
+  font-family:Georgia,"Times New Roman",serif;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+.container{width:min(1120px,92%);margin:auto}
+nav{
+  position:sticky;top:0;z-index:20;
+  backdrop-filter:blur(12px);
+  background:rgba(247,240,223,.9);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:68px}
+.logo{font-weight:bold;letter-spacing:.04em;color:var(--burgundy);text-decoration:none;font-size:1.1rem}
+.nav-links{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.nav-links a{
+  text-decoration:none;padding:9px 12px;border-radius:999px;color:var(--muted);font-size:.92rem
+}
+.nav-links a:hover{background:var(--paper);color:var(--burgundy)}
+.hero{padding:80px 0 62px;text-align:center}
+.cross{
+  width:56px;height:72px;margin:0 auto 20px;position:relative;
+}
+.cross:before,.cross:after{
+  content:"";position:absolute;background:var(--gold);border-radius:4px;
+}
+.cross:before{width:14px;height:72px;left:21px;top:0}
+.cross:after{width:56px;height:14px;left:0;top:20px}
+.eyebrow{text-transform:uppercase;letter-spacing:.2em;color:var(--gold);font:700 .75rem/1.4 Arial,sans-serif}
+h1{font-size:clamp(2.6rem,7vw,5.6rem);line-height:.95;margin:14px 0;color:var(--burgundy)}
+.hero p{max-width:680px;margin:20px auto;color:var(--muted);font-size:1.12rem;line-height:1.7}
+.btn{
+  border:0;border-radius:999px;padding:13px 20px;font-weight:bold;
+  transition:.2s transform,.2s box-shadow,.2s background
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(55,36,24,.14)}
+.btn-primary{background:var(--burgundy);color:white}
+.btn-secondary{background:var(--paper);color:var(--burgundy);border:1px solid var(--line)}
+.hero-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+section{padding:58px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:24px}
+.section-head h2{margin:0;color:var(--burgundy);font-size:2rem}
+.section-head p{margin:7px 0 0;color:var(--muted);line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{
+  background:rgba(255,250,240,.84);border:1px solid var(--line);border-radius:20px;
+  padding:22px;box-shadow:var(--shadow)
+}
+.card h3{margin:8px 0 8px;color:var(--burgundy)}
+.card p{color:var(--muted);line-height:1.55}
+.icon{font-size:1.7rem}
+.quote{
+  margin:28px 0;padding:26px;border-left:4px solid var(--gold);
+  background:rgba(255,250,240,.7);border-radius:0 16px 16px 0;color:#5c4b40;
+  font-style:italic;line-height:1.7
+}
+.habits{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.habit{
+  display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--line);
+  background:var(--paper);border-radius:14px
+}
+.habit input{width:19px;height:19px;accent-color:var(--burgundy)}
+.progress-wrap{margin:18px 0}
+.progress-bar{height:12px;background:#eadfca;border-radius:999px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--burgundy),var(--gold));transition:width .35s}
+.progress-text{display:flex;justify-content:space-between;margin-bottom:7px;color:var(--muted);font:600 .85rem Arial,sans-serif}
+.sin-layout{display:grid;grid-template-columns:280px 1fr;gap:18px}
+.sin-buttons{display:grid;gap:9px}
+.sin-btn{
+  text-align:left;border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  padding:13px 15px;border-radius:13px
+}
+.sin-btn.active,.sin-btn:hover{background:var(--burgundy);color:white;border-color:var(--burgundy)}
+.sin-panel{min-height:360px}
+.sin-panel h3{font-size:1.7rem;margin-top:0;color:var(--burgundy)}
+.action{
+  margin-top:18px;padding:18px;border-radius:16px;background:#f1e7d3;border:1px solid var(--line)
+}
+.action strong{color:var(--green)}
+.random-box{text-align:center;padding:30px}
+.random-result{font-size:1.35rem;line-height:1.55;color:var(--burgundy);min-height:68px;display:flex;align-items:center;justify-content:center}
+.resources{grid-template-columns:repeat(2,1fr)}
+.resource a{
+  display:flex;align-items:center;justify-content:space-between;gap:15px;
+  padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none
+}
+.resource a:last-child{border-bottom:0}
+.resource a:hover{color:var(--burgundy)}
+.note{
+  background:#efe4cf;border:1px solid var(--line);border-radius:15px;padding:15px;
+  color:var(--muted);font: .9rem/1.55 Arial,sans-serif
+}
+footer{padding:42px 0 60px;text-align:center;color:var(--muted);border-top:1px solid var(--line)}
+footer .cross{transform:scale(.45);margin:-12px auto}
+@media(max-width:800px){
+  .grid{grid-template-columns:1fr}
+  .sin-layout{grid-template-columns:1fr}
+  .resources{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .nav-inner{align-items:flex-start;padding:10px 0;flex-direction:column}
+  .nav-links{justify-content:flex-start}
+  .hero{padding-top:55px}
+  .habits{grid-template-columns:1fr}
+  section{padding:42px 0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a class="logo" href="#home">✝ Via Virtutis</a>
+    <div class="nav-links">
+      <a href="#growth">Growth</a>
+      <a href="#prayer">Prayer</a>
+      <a href="#sins">Seven Sins</a>
+      <a href="#resources">Resources</a>
+    </div>
+  </div>
+</nav>
+
+<main id="home">
+  <header class="hero container">
+    <div class="cross" aria-hidden="true"></div>
+    <div class="eyebrow">Faith • Virtue • Growth</div>
+    <h1>Via Virtutis</h1>
+    <p>A quiet little place to pray, reflect, build good habits, and keep moving toward virtue — one day at a time.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#growth">Begin today's practice</a>
+      <a class="btn btn-secondary" href="#sins">I need a distraction</a>
+    </div>
+    <div class="quote">“Do not be overcome by evil, but overcome evil with good.” — Romans 12:21</div>
+  </header>
+
+  <section id="growth">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>🌱 Daily Growth</h2>
+          <p>Small actions count. Check off what you genuinely do today.</p>
+        </div>
+        <button class="btn btn-secondary" onclick="resetHabits()">Reset today</button>
+      </div>
+
+      <div class="card">
+        <div class="progress-wrap">
+          <div class="progress-text"><span>Today's progress</span><span id="progressText">0 / 8</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <div class="habits" id="habitList"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prayer">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>🕯️ Prayer & Reflection</h2>
+          <p>A few simple prompts for slowing down and turning your attention toward God.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="icon">🙏</div>
+          <h3>Morning offering</h3>
+          <p>Begin the day by offering your thoughts, choices, work, and intentions to God. Ask for the grace to choose what is good.</p>
+        </article>
+        <article class="card">
+          <div class="icon">📖</div>
+          <h3>Scripture pause</h3>
+          <p>Read a short passage from Scripture. Ask: “What stands out to me, and how could I live it today?”</p>
+        </article>
+        <article class="card">
+          <div class="icon">🌙</div>
+          <h3>Night reflection</h3>
+          <p>Think about one thing you did well, one thing you could improve, and one thing you are grateful for. Begin again tomorrow.</p>
+        </article>
+      </div>
+      <div class="quote">A difficult moment is not the whole story of who you are. Growth can begin again after a mistake.</div>
+    </div>
+  </section>
+
+  <section id="sins">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>🛡️ Resist & Redirect</h2>
+          <p>Pick an impulse and get a practical virtue-based response. The goal is redirection, not shame.</p>
+        </div>
+      </div>
+
+      <div class="sin-layout">
+        <div class="sin-buttons" id="sinButtons"></div>
+        <div class="card sin-panel">
+          <div id="sinContent"></div>
+          <button class="btn btn-primary" onclick="newAction()">Give me another action</button>
+        </div>
+      </div>
+
+      <div class="card random-box" style="margin-top:18px">
+        <div class="eyebrow">Need to switch gears?</div>
+        <h3>🎲 Random healthy distraction</h3>
+        <div class="random-result" id="randomResult">Press the button and let fate pick your next tiny mission.</div>
+        <button class="btn btn-secondary" onclick="randomDistraction()">Distract me</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="resources">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>📚 Catholic Resources</h2>
+          <p>External resources open in a new tab. Always check that a source matches your own parish or Church guidance.</p>
+        </div>
+      </div>
+      <div class="grid resources">
+        <article class="card resource">
+          <h3>Core resources</h3>
+          <a href="https://www.vatican.va/archive/ENG0015/_INDEX.HTM" target="_blank" rel="noopener noreferrer">Catechism of the Catholic Church ↗</a>
+          <a href="https://www.vatican.va/content/vatican/en.html" target="_blank" rel="noopener noreferrer">The Holy See / Vatican ↗</a>
+          <a href="https://bible.usccb.org/" target="_blank" rel="noopener noreferrer">USCCB Bible ↗</a>
+        </article>
+        <article class="card resource">
+          <h3>Prayer & learning</h3>
+          <a href="https://www.usccb.org/prayers" target="_blank" rel="noopener noreferrer">USCCB Prayers ↗</a>
+          <a href="https://www.vaticannews.va/en.html" target="_blank" rel="noopener noreferrer">Vatican News ↗</a>
+          <a href="https://universalis.com/" target="_blank" rel="noopener noreferrer">Universalis — Liturgy & Prayer ↗</a>
+        </article>
+      </div>
+      <div class="note" style="margin-top:16px">
+        <strong>Tip:</strong> You can replace or add resource links later. This site does not collect your habit data or send it to a server; the progress is stored only in this browser.
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="cross" aria-hidden="true"></div>
+  <strong>Via Virtutis</strong>
+  <p>Built for reflection, virtue, and taking the next good step.</p>
+</footer>
+
+<script>
+const habits = [
+  "Prayed or spent a few quiet minutes with God",
+  "Read or reflected on Scripture",
+  "Did one useful thing I was tempted to postpone",
+  "Showed patience when I could have snapped",
+  "Did something kind without needing praise",
+  "Practised gratitude",
+  "Paused before acting on an unhealthy impulse",
+  "Reflected honestly on my day"
+];
+
+const sins = {
+  pride: {
+    title:"Pride → Humility",
+    desc:"Pride can pull our attention toward proving ourselves, being right, or needing recognition. Try shifting the focus outward.",
+    actions:[
+      "Give someone else genuine credit for something they did well.",
+      "Listen to someone without planning your response.",
+      "Do one helpful thing anonymously or without seeking praise."
+    ]
+  },
+  greed: {
+    title:"Greed → Generosity",
+    desc:"When “more” starts taking over, practise enoughness and generosity instead.",
+    actions:[
+      "Share something you have with someone else.",
+      "Give away an item you genuinely no longer need.",
+      "Write down three things you already have that you are grateful for."
+    ]
+  },
+  lust: {
+    title:"Lust → Respect & Self-control",
+    desc:"If sexual thoughts or content are pulling your attention somewhere you do not want to go, redirect yourself without spiralling into shame.",
+    actions:[
+      "Close the triggering content and move somewhere different.",
+      "Put your phone down and do a hands-on activity for ten minutes.",
+      "Switch your attention to music, art, reading, prayer, or a conversation."
+    ]
+  },
+  envy: {
+    title:"Envy → Gratitude",
+    desc:"Comparison can make somebody else's good feel like your loss. Bring your attention back to what is actually yours to build.",
+    actions:[
+      "Name three things in your own life that you appreciate.",
+      "Congratulate someone sincerely instead of comparing yourself with them.",
+      "Write one personal goal you can work on today."
+    ]
+  },
+  gluttony: {
+    title:"Gluttony → Temperance",
+    desc:"Temperance is about balance and self-control, not punishing yourself or treating food as something bad.",
+    actions:[
+      "Take a short break from whatever you are consuming and do something else.",
+      "Slow down and pay attention to what you are doing rather than rushing.",
+      "Choose a non-food activity for your next ten minutes."
+    ]
+  },
+  wrath: {
+    title:"Wrath → Patience",
+    desc:"Anger can be real and valid while still needing a wise response. Create a little space before you act.",
+    actions:[
+      "Wait before sending the message you are angry about.",
+      "Take ten slow breaths and unclench your shoulders.",
+      "Write what you want to say privately, then decide later whether it needs sending."
+    ]
+  },
+  sloth: {
+    title:"Sloth → Diligence",
+    desc:"You do not need to conquer your entire life in one go. Make the first step ridiculously small.",
+    actions:[
+      "Set a five-minute timer and start the task.",
+      "Put away just five things in your room.",
+      "Open the work you have been avoiding and do only the first tiny step."
+    ]
+  }
+};
+
+let selectedSin = "pride";
+let currentAction = 0;
+
+function renderHabits(){
+  const list=document.getElementById("habitList");
+  const saved=JSON.parse(localStorage.getItem("viaVirtutisHabits") || "[]");
+  list.innerHTML="";
+  habits.forEach((habit,i)=>{
+    const label=document.createElement("label");
+    label.className="habit";
+    label.innerHTML=`<input type="checkbox" ${saved[i]?"checked":""} onchange="toggleHabit(${i},this.checked)"> <span>${habit}</span>`;
+    list.appendChild(label);
+  });
+  updateProgress();
+}
+
+function toggleHabit(i,checked){
+  const saved=JSON.parse(localStorage.getItem("viaVirtutisHabits") || "[]");
+  saved[i]=checked;
+  localStorage.setItem("viaVirtutisHabits",JSON.stringify(saved));
+  updateProgress();
+}
+
+function updateProgress(){
+  const saved=JSON.parse(localStorage.getItem("viaVirtutisHabits") || "[]");
+  const done=habits.reduce((n,_,i)=>n+(saved[i]?1:0),0);
+  document.getElementById("progressText").textContent=`${done} / ${habits.length}`;
+  document.getElementById("progressFill").style.width=`${done/habits.length*100}%`;
+}
+
+function resetHabits(){
+  localStorage.removeItem("viaVirtutisHabits");
+  renderHabits();
+}
+
+function renderSins(){
+  const buttons=document.getElementById("sinButtons");
+  buttons.innerHTML="";
+  Object.keys(sins).forEach(key=>{
+    const b=document.createElement("button");
+    b.className="sin-btn"+(key===selectedSin?" active":"");
+    b.textContent=sins[key].title;
+    b.onclick=()=>{selectedSin=key;currentAction=0;renderSins();};
+    buttons.appendChild(b);
+  });
+  const s=sins[selectedSin];
+  document.getElementById("sinContent").innerHTML=`
+    <div class="eyebrow">Virtue practice</div>
+    <h3>${s.title}</h3>
+    <p>${s.desc}</p>
+    <div class="action"><strong>Try this:</strong><br>${s.actions[currentAction]}</div>
+  `;
+}
+
+function newAction(){
+  const s=sins[selectedSin];
+  currentAction=(currentAction+1)%s.actions.length;
+  renderSins();
+}
+
+const distractions=[
+  "Read one short Psalm or Gospel passage.",
+  "Tidy one tiny surface for five minutes.",
+  "Draw something — no pressure for it to be good.",
+  "Write down three things you are grateful for.",
+  "Drink some water and stretch for a minute.",
+  "Send someone a genuinely kind message.",
+  "Put your phone away and listen to one song.",
+  "Make a tiny plan for tomorrow.",
+  "Do a puzzle, word game, or other harmless brain teaser.",
+  "Sit somewhere quiet for two minutes and breathe slowly.",
+  "Read about a saint you have never learned about.",
+  "Do one small task you have been avoiding."
+];
+
+function randomDistraction(){
+  const result=distractions[Math.floor(Math.random()*distractions.length)];
+  document.getElementById("randomResult").textContent=result;
+}
+
+renderHabits();
+renderSins();
+</script>
+</body>
+</html>
